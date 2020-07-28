@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1>学生信息查询页面</h1>
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{info.id}}</td>
+                        <td>{{info.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/" class="btn btn-primary btn-lg active" role="button">返回首页</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1>学生信息管理系统</h1>
+            <a href="#" class="btn btn-primary btn-lg active" role="button">查找学生信息</a>
+            <form class="form-inline" method="POST">
+                <div class="form-group mb-2">
+                    <label for="staticEmail2" class="sr-only">id</label>
+                    <input type="text" readonly class="form-control" id="staticEmail2" value="输入要查找学生的id">
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="inputPassword2" class="sr-only">Password</label>
+                    <input type="text" class="form-control" id="inputPassword2" name="id" placeholder="id">
+                </div>
+                <div class="form-group mb-2">
+                    <button type="submit" class="form-control btn btn-success" >查找</button>
+                </div>
+            </form>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>删除</th>
+                        <th>修改</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{each messages}}
+                    <tr>
+                        <td>{{$value.id}}</td>
+                        <td>{{$value.name}}</td>
+                        <td>
+                            <a href="/delete?id={{$value.id}}" class="btn btn-primary btn-lg active" role="button">删除</a>
+                        </td>
+                        <td><a href="/update?id={{$value.id}}" class="btn btn-primary btn-lg active" role="button">修改</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <a href="/create" class="btn btn-primary btn-lg active" role="button">增加学生信息</a>
+        </div>
+    </div>
+</body>
+
+</html>
