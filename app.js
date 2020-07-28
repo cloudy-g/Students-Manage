@@ -5,6 +5,7 @@ let app = express();
 let manage = require('./model/manage');
 let bodyParser = require('body-parser');
 let utility = require('./model/common');
+
 // 静态资源处理
 app.use('/public/', express.static(path.join(__dirname, './public')));
 // 模板引擎
