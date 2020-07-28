@@ -1,36 +1,78 @@
 
 let utility = require('./common');
+let Student = require('../dataMethods');
+
+//  显示首页
+let showIndex = (res) => {
+    Student.show((err, data) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.render('index.html', {
+            messages: data
+        })
+    })
+}
 //  增加学生信息
-let create = (newinfo, infos) => {
+let create = (newinfo, callback) => {
     // console.log(newinfo);
-    infos.push(newinfo);
-    infos.sort((o1, o2) =>  o1.id-o2.id);
+    Student.create(newinfo, (err) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        callback();
+    })
 };
 //  删除学生信息
-let del = (req, infos) => {
-    let index = utility.getIndexFromId(req.query.id, infos);
-    infos.splice(index, 1);
-    return infos;
+let del = (req, callback) => {
+    let id = req.query.id;
+    Student.del(id, (err) => {
+        if (err) {
+            callback(err);
+            return;
+        }
+        callback(null);
+    })
 };
-//  修改学生信息
-let update = (newInfo, infos) => {
-    let index = utility.getIndexFromId(newInfo.id, infos);
-    infos[index] = newInfo;
+//  展示修改学生信息
+let showUpdate = (req, callback) => {
+    Student.find(req.query.id, (err, data) => {
+        if (err) {
+            callback(err);
+            return;
+        }
+        callback(null, data);
+    })
+}
+let update = (newInfo, callback) => {
+    Student.update(newInfo, (err) => {
+        if (err) {
+            callback(err);
+            return;
+        }
+        callback(null);
+    })
 }
 
-
-
-
-
-
-
-
-
+let search = (newInfo, callback) => {
+    Student.find(newInfo.id, (err, data) => {
+        if (err) {
+            callback(err);
+            return;
+        }
+        callback(null, data);
+    })
+}
 
 
 // 提供接口
 module.exports = {
+    showIndex,
     create,
     del,
-    update, 
+    showUpdate,
+    update,
+    search
 }
